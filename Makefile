@@ -30,7 +30,7 @@ _build/module.o: main.native.o
 	cc -c module.c -o _build/module.o
 
 _build/main.ko: _build/module.o main.native.o
-	ld -nostdlib -r -d -o _build/main.ko _build/main.native.o _build/module.o ~/.opam/mirage-kfreebsd/lib/mirage-kfreebsd/libmir.a
+	ld -nostdlib -r -d -o _build/main.ko _build/main.native.o _build/module.o `ocamlfind query -format "%d" mirage-kfreebsd`/libmir.a
 	objcopy --strip-debug _build/main.ko
 
 build: main.native
